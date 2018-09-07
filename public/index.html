@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html  dir="ltr">
+  <head>
+    <link rel="stylesheet" href="/style/all.css">
+    <meta charset="utf-8">
+    <title></title>
+    <base href="/">
+  </head>
+
+  <body ng-app = "decode">
+     <!-- <button type="button" name="button" ui-sref= "home">Home</button>-->  <!--Кнопки переключения между стрницами которые привязны в апп.js к определенным урлам -->
+    <!-- <button type="button" name="button" ui-sref="post">Post</button> -->
+    <header class="header" ng-controller= "HeaderCtrl as vm">
+      <div class="wrapper">
+
+      <div class="header-logo-container">
+        <img src="/images/photo-camera-with-heart.svg" alt="" class="header-logo-img">
+        <h1 class="header-logo-txt">Oomph</h1>
+      </div>
+      <div class="header_nav ">
+        <a ui-sref="home" class="header__button" ng-if="session">Home</a>
+        <a  class="header__button" href=""ng-click="vm.show()"  ng-if="session">Add Shots</a>
+      <!-- <img class="add_img" src="/images/add.svg" ng-click="vm.show()"  ng-if="session"> -->
+      <a ui-sref="login" class="header__button" ng-if="!session">Log in</a>
+      <a ui-sref="registration" class="header__button reg" ng-if="!session">Registration</a>
+      <a ui-sref="profile({id: session.id})" class="header__button" ng-if="session">Profile</a>
+      <a ng-click="vm.logout()" class="header__button SignUp" ng-if="session">Sign Up</a>
+      <div class="search-box">
+        <img src="/images/search.svg"  class="search_logo" alt="">
+        <input type="text" name="" value="" placeholder="Go to Search"
+        ng-model="vm.search_text"
+        ng-keyup="vm.search()"
+        >
+        <div class="search-result"
+          ng-class="{'active':vm.search_text}">
+          <li
+          ng-repeat=" result in vm.search_result"
+          ng-bind="result.title"
+          ng-click="vm.goToResult(result._id)"
+          >Title1</li>
+        </div>
+      </div>
+      </div>
+      </div>
+    </header>
+    <ui-view>
+
+    </ui-view>
+  </body>
+  <script type="text/javascript" src="/js/vendor/ng.min.js">
+  </script>
+  <script src="/js/vendor/ng-route.min.js">
+  </script>
+  <script src="/js/vendor/ng-cookies.min.js">
+  </script>
+  <script src="/app.js">
+  </script>
+  <script src="/js/vendor/file.js">
+  </script>
+  <script src="/js/controllers/home.js">
+  </script>
+  <script src="/js/controllers/post.js">
+  </script>
+  <script src="/js/controllers/login.js">
+  </script>
+  <script src="/js/controllers/header.js">
+  </script>
+  <script src="/js/controllers/registration.js">
+  </script>
+  <script src="/js/controllers/profile.js">
+  </script>
+</html>

@@ -1,0 +1,77 @@
+.header{
+  height: 100px;
+  width: 100%;
+  background-color: #2980b9;
+  background: url(../../images/mountain_bg.jpg) #444;
+  background-size: cover;
+}
+
+.header_nav{
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  position: relative;
+  align-items: center;
+  height: 100%;
+}
+
+.header__button{
+  padding-top: 40px;
+  margin-left: 30px;
+  text-decoration: none;
+  color: #d9d9d9;
+  cursor: pointer;
+}
+.header__button:hover{
+  color: #fff;
+}
+
+.add_img{
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.search-result.active{
+
+}
+.header-logo-container{
+  float: left;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+
+}
+.header-logo-img{
+  margin-top: 10px;
+  width: 80px;
+  height: 62px;
+}
+.header-logo-txt{
+   letter-spacing: 0.1em;
+  margin-top: 50px;
+  font-family: 'Shadows Into Light', cursive;
+  color: #fff;
+  font-size: 24px;
+}
+.reg{
+    color: rgba(17,255,226,0.72);
+}
+
+
+.SignUp{
+  margin-top: 40px;
+  background: #208f8f;
+  border-radius: 20px;
+  font-size: inherit;
+  color: #fff;
+  box-shadow: none;
+  border: none;
+  text-shadow: none;
+  padding: .5rem .8rem;
+  transition: background-color 0.25s
+}
+
+.SignUp:hover{
+  background: #39cccce0;
+}

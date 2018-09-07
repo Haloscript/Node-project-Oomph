@@ -1,0 +1,66 @@
+<div class="edit-modal-background" ng-if="addForm">
+<form class="edit-form wrapper" ng-submit="vm.addPost()" >
+<h1>Create new post</h1>
+<img src="/images/cancel.svg" alt="" class="cancel__button" ng-click="vm.show()">
+<input type="text" name="" value="" class="addPost_text" ng-model="vm.title" placeholder="Title">
+<input type="text" name="" value="" class="addPost_text"ng-model="vm.content" placeholder="Content">
+<!-- <input type="text" name="" value="" ng-model="vm.author" placeholder="Author"> -->
+<input type="file" name="" value="" ng-file-model="vm.file" accept="image/*">
+<input class="input__button" type="submit" name="" value="Save">
+</form>
+</div>
+
+
+<div class="edit-modal-background" ng-if="vm.edit_id">
+<form ng-submit="vm.editPost()" class="edit-form wrapper">
+  <h1 class="login__title__modals" >New Title</h1>
+  <img src="/images/cancel.svg" alt="" class="cancel__button" ng-click="vm.showEditPost()">
+  <input type="text" name="" value="" class="input__block" ng-model="vm.edit_title" placeholder="Title">
+  <h1 class="login__title__modal" >New Content</h1>
+  <input type="text" name="" value="" class="input__block" ng-model="vm.edit_content" placeholder="Content">
+  <h1 class="login__title__modal" >New Author</h1>
+  <input type="text" name="" value="" class="input__block" ng-model="vm.edit_author" placeholder="Author">
+  <input type="file" name="" value="" ng-file-model="vm.file" accept="image/*">
+  <input type="submit" name="" value="Edit" class="login__button">
+</form>
+</div>
+<div class="edit-modal-background" ng-if="vm.editProfile_id">
+<form ng-submit="vm.editProfile()" class="edit-form wrapper">
+  <input type="text" name="" value="" placeholder="Edit name"class="input__block" ng-model="vm.edit_name">
+  <input type="text" name="" value="" placeholder="Edit Surname"class="input__block" ng-model="vm.edit_surname">
+  <input type="text" name="" value="" placeholder="Edit email"class="input__block" ng-model="vm.edit_email">
+  <input type="file" name="" value="" placeholder="Edit avatar" ng-file-model="vm.avatar">
+  <input type="submit" name="" value="Edit" class="login__button">
+</form>
+</div>
+
+<section class="user-container wrapper">
+  <div class="avatar">
+    <img ng-src="{{vm.user.file_link}}" alt="" class="user__img">
+  </div>
+  <div class="user-info">
+    <h1>User Name</h1>
+    <span class="user__inf" ng-bind="vm.user.name">qweqweqweqwe</span>
+    <h1>User SurName</h1>
+    <span class="user__inf" ng-bind="vm.user.surname" >qweqweqwe</span>
+    <h1>User email</h1>
+    <span class="user__inf" ng-bind="vm.user.email">qweqweqweqwe</span>
+    <input type="button" name="" value="Edit info" ng-click="vm.showUserEdit()"class="user_button" ng-if="session.id == vm.user_id">
+  </div>
+</section>
+<section class="post-container wrapper">
+  <div class="post" ng-repeat="post in vm.posts">
+    <span class="post__title" ng-bind="post.title" ui-sref="post({id:post._id})">Some Title</span>
+    <img ng-click="vm.removePost($index, post)" src="/images/delete.svg" alt="" class="post__remove" ng-if="session.id == post.user">
+    <img ng-click="vm.selectPost($index, post)" src="/images/tools.svg" alt="" class="post__edit" ng-if="session.id == post.user">
+    <span class="post__date" ng-bind="post.likes"></span>
+    <img ng-click="vm.setLike(post._id, $index)" src="/images/like.svg" alt="" class="post__like" ng-if="session.likes.includes(post._id) && session">
+    <img ng-click="vm.setLike(post._id, $index)" src="/images/unlike.svg" alt="" class="post__like"ng-if="!session.likes.includes(post._id) && session">
+    <span class="post__content" ng-bind="post.content">Some content</span>
+    <div class="post-info">
+      <span class="post__date" ng-bind="post.date | date" ></span>
+      <span class="post__author" ng-bind="post.author">Max</span>
+    </div>
+      <img ng-src="{{post.file_link}}" alt="" class="posts__img">
+  </div>
+</section>

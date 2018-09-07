@@ -1,0 +1,43 @@
+<!-- <h1 ng-bind="vm.post_id"> </h1> -->
+<div class="edit-modal-background" ng-if="vm.edit_comment_id">
+<form ng-submit="vm.editComment()" class="edit-form wrapper">
+  <h1 class="login__title__modals" >New Text</h1>
+  <input type="text" name="" value="" class="input__block" ng-model="vm.edit_comment_text" placeholder="Title">
+  <input type="submit" name="" value="Edit" class="login__button">
+</form>
+</div>
+<section class="post-one-container wrapper">
+<div class="post-one">
+  <span class="post__title" ng-bind="vm.post.title" ui-sref="post({id:post._id})">Some Title</span>
+  <img ng-click="vm.removePost(vm.post)" src="/images/delete.svg" alt="" class="post__remove" ng-if="session.id == vm.post.user">
+  <img ng-click="vm.selectPost(vm.post)" src="/images/tools.svg" alt="" class="post__edit" ng-if="session.id == vm.post.user">
+  <span class="post__content" ng-bind="vm.post.content">Some content</span>
+  <img ng-src="{{vm.post.file_link}}" alt="" class="post-one_img">
+  <span class="post__date" ng-bind="vm.post.likes"></span>
+  <img ng-click="vm.setLike(vm.post._id)" src="/images/like.svg" alt="" class="post__like" ng-if="session.likes.includes(vm.post._id) && session">
+  <img ng-click="vm.setLike(vm.post._id)" src="/images/unlike.svg" alt="" class="post__like"ng-if="!session.likes.includes(vm.post._id) && session">
+  <div class="post-info">
+    <span class="post__date" ng-bind="vm.post.date | date" ></span>
+    <span class="post__author" ng-bind="vm.post.author">Max</span>
+
+  </div>
+<!-- <img ng-src="{{vm.post.file_link}}" alt="" class="post-one_img"> -->
+
+<form ng-submit="vm.addComment()" class="post-addcomment" ng-if="session">
+  <input type="text" ng-model="vm.text">
+  <input type="submit" name="" value="Add Comment">
+</form>
+<div class="post-coment-container" ng-repeat="comment in vm.comments  ">
+  <div class="">
+  <span ng-bind="comment.text"></span>
+  <span ng-bind="comment.user.name"></span>
+  <span ng-bind="comment.date | date"></span>
+  </div>
+  <div class="">
+  <img src="{{comment.user.file_link}}" alt="" class="user__minimg">
+  <img ng-click="vm.removeComment($index, comment)" src="/images/delete.svg" alt="" class="post__remove" ng-if="session">
+  <img ng-click="vm.selectComment($index, comment)" src="/images/tools.svg" alt="" class="post__edit" ng-if="session">
+  </div>
+</div>
+</section>
+<!--  == comment.user._id || session == comment.user -->
